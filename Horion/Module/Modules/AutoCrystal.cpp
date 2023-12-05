@@ -20,6 +20,7 @@ AutoCrystal::AutoCrystal() : IModule(0x0, Category::COMBAT, "Like CrystalAura lo
 	registerIntSetting("Break Delay", &breakDelay, breakDelay, 0, 20);
 	registerBoolSetting("ID Predict", &idPredict, idPredict);
 	registerIntSetting("Packets", &packets, packets, 1, 30);
+	registerIntSetting("Send Delay", &sendDelay, sendDelay, 0, 20);
 	//Switch
 	switchMode.addEntry("None", 0);
 	switchMode.addEntry("Normal", 1);
@@ -162,13 +163,18 @@ void AutoCrystal::breakCrystal(GameMode* gm) {
 void AutoCrystal::breakIdPredictCrystal(GameMode* gm) {
 	if (!autoBreak) return;
 	if (placeList.empty()) return;
-	shouldChangeID = true;
-	for (int i = 0; i < packets; i++) {
-		gm->attack(placeList[0].targetActor);
-		highestID++;
+	if (sendDelayTick >= sendDelay) {
+		shouldChangeID = true;
+		for (int i = 0; i < packets; i++) {
+			gm->attack(placeList[0].targetActor);
+			highestID++;
+		}
+		highestID -= packets;
+		shouldChangeID = false;
+		sendDelayTick = 0;
+	} else {
+		sendDelayTick++;
 	}
-	highestID -= packets;
-	shouldChangeID = false;
 }
 
 void AutoCrystal::findEntity(Entity* currentEntity, bool isRegularEntity) {

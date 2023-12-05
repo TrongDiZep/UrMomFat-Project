@@ -76,7 +76,7 @@ public:
 	float minPlaceDame = 4.5f;
 	float maxPlaceDame = 6.f;
 	int multiPlace = 1;
-	int placeDelay = 2;
+	int placeDelay = 1;
 	// Break
 	bool autoBreak = true;
 	float breakRange = 6.f;
@@ -85,6 +85,7 @@ public:
 	int breakDelay = 2;
 	bool idPredict = false;
 	int packets = 1;
+	int sendDelay = 1;
 	//Switch
 	SettingEnum switchMode = SettingEnum(this);
 	SettingEnum spoofMode = SettingEnum(this);
@@ -97,6 +98,7 @@ private:
 
 	int placeDelayTick = 0;
 	int breakDelayTick = 0;
+	int sendDelayTick = 0;
 
 protected:
 	inline bool isHoldingCrystal();
