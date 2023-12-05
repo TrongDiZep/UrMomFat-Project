@@ -18,6 +18,7 @@ void ModuleManager::initModules() {
 	logF("Initializing modules.");
 	{
 
+		moduleList.emplace_back(new AutoPhase());
 		moduleList.emplace_back(new InventoryCleaner());
 		// moduleList.emplace_back(new InfiniteAura());
 		moduleList.emplace_back(new InventoryMove());

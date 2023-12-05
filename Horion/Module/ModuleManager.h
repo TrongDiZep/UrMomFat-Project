@@ -9,6 +9,7 @@
 
 #include "../../Memory/GameData.h"
 
+#include "Modules/AutoPhase.h"
 #include "Modules/InventoryCleaner.h"
 #include "Modules/Notifications.h"
 //#include "Modules/InfiniteAura.h"
