@@ -78,7 +78,7 @@ void AutoPhase::onDisable() {
 
 void AutoPhase::onTick(GameMode* gm) {
 	if (Game.getLocalPlayer() == nullptr) return;
-
+	if (!Game.getLocalPlayer()->onGround) return;
 	Vec3 pos = Game.getLocalPlayer()->getPos()->floor();
 	pos.y -= 1.f;
 
