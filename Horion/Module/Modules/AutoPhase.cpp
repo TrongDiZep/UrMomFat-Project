@@ -11,7 +11,7 @@ AutoPhase::~AutoPhase() {
 const char* AutoPhase::getModuleName() {
 	return ("AutoPhase");
 }
-Vec3 Center(Vec3 pos, Vec3 selectedBlock) {
+Vec3 AutoPhase::Center(const Vec3& pos, const Vec3& selectedBlock) {
 	Vec3 phasePos = Vec3(floor(Game.getLocalPlayer()->getPos()->x), Game.getLocalPlayer()->getPos()->y, floor(Game.getLocalPlayer()->getPos()->z));
 	int place = 0;
 	if (selectedBlock == pos.add(1.f, 0.f, 0.f)) place = 1;
@@ -24,53 +24,57 @@ Vec3 Center(Vec3 pos, Vec3 selectedBlock) {
 	if (selectedBlock == pos.add(-1.f, 0.f, 1.f)) place = 7;
 	if (selectedBlock == pos.add(-1.f, 0.f, -1.f)) place = 8;
 
+	static const float offset1 = 0.8999f; //0.90f lagBack :skull:
+	static const float offset2 = (1.f - offset1);
+
 	if (place == 1) {
-		phasePos.x += 0.85f;
+		phasePos.x += offset1;
 		phasePos.z += 0.5f;
 	}
 	if (place == 2) {
-		phasePos.x += 0.15f;
+		phasePos.x += offset2;
 		phasePos.z += 0.5f;
 	}
 	if (place == 3) {
 		phasePos.x += 0.5f;
-		phasePos.z += 0.85f;
+		phasePos.z += offset1;
 	}
 	if (place == 4) {
 		phasePos.x += 0.5f;
-		phasePos.z += 0.15f;
+		phasePos.z += offset2;
 	}
 	if (place == 5) {
-		phasePos.x += 0.85f;
-		phasePos.z += 0.85f;
+		phasePos.x += offset1;
+		phasePos.z += offset1;
 	}
 	if (place == 6) {
-		phasePos.x += 0.85f;
-		phasePos.z += 0.15f;
+		phasePos.x += offset1;
+		phasePos.z += offset2;
 	}
 	if (place == 7) {
-		phasePos.x += 0.15f;
-		phasePos.z += 0.85f;
+		phasePos.x += offset2;
+		phasePos.z += offset1;
 	}
 	if (place == 8) {
-		phasePos.x += 0.15f;
-		phasePos.z += 0.15f;
+		phasePos.x += offset2;
+		phasePos.z += offset2;
 	}
 
 	//Game.getLocalPlayer()->setPos(phasePos);
 	float dist = Game.getLocalPlayer()->getPos()->dist(phasePos);
-	Game.getLocalPlayer()->lerpTo(phasePos, Vec2(1, 1), (int)fmax((int)dist * 0.1, 1));
-	Game.getLocalPlayer()->lerpMotion(phasePos);
+	if (dist > 0.01f && dist < 1.f) Game.getLocalPlayer()->lerpTo(phasePos, Vec2(1, 1), (int)fmax((int)dist * 0.1, 1));
 
 	return phasePos;
 }
 
-bool isValidBlock(Vec3 pos) {
+bool AutoPhase::isValidBlock(const Vec3& pos) {
 	if (Game.getLocalPlayer()->region->getBlock(pos)->blockLegacy->blockId == 49 || Game.getLocalPlayer()->region->getBlock(pos)->blockLegacy->blockId == 7) return true;
 	return false;
 }
 
-std::vector<Vec3> checkList;
+void AutoPhase::onDisable() {
+	if (Game.getLocalPlayer() != nullptr) Game.getLocalPlayer()->aabb.upper.y = Game.getLocalPlayer()->aabb.lower.y + 1.6f;
+}
 
 void AutoPhase::onTick(GameMode* gm) {
 	if (Game.getLocalPlayer() == nullptr) return;
@@ -78,6 +82,7 @@ void AutoPhase::onTick(GameMode* gm) {
 	Vec3 pos = Game.getLocalPlayer()->getPos()->floor();
 	pos.y -= 1.f;
 
+	static std::vector<Vec3> checkList;
 	checkList.clear();
 
 	checkList.push_back(Vec3(pos.add(1.f, 0.f, 0.f)));
@@ -106,7 +111,7 @@ void AutoPhase::onTick(GameMode* gm) {
 			Center(pos, selectedBlock);
 			gm->player->aabb.upper.y = gm->player->aabb.lower.y;
 		} 
-		else if (gm->player->aabb.upper.y = gm->player->aabb.lower.y) Game.getLocalPlayer()->aabb.upper.y += 1.8f;
+		else gm->player->aabb.upper.y = gm->player->aabb.lower.y + 1.6f;
 	}
 
 }
