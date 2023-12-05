@@ -61,8 +61,8 @@ Vec3 AutoPhase::Center(const Vec3& pos, const Vec3& selectedBlock) {
 	}
 
 	//Game.getLocalPlayer()->setPos(phasePos);
-	float dist = Game.getLocalPlayer()->getPos()->dist(phasePos);
-	if (dist > 0.01f && dist < 1.f) Game.getLocalPlayer()->lerpTo(phasePos, Vec2(1, 1), (int)fmax((int)dist * 0.1, 1));
+	float dist = Game.getLocalPlayer()->eyePos0.dist(phasePos);
+	if (dist > 0.01f && dist < 0.9f) Game.getLocalPlayer()->lerpTo(phasePos, Vec2(1, 1), (int)fmax((int)dist * 0.1, 1));
 
 	return phasePos;
 }
