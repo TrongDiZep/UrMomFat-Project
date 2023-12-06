@@ -19,6 +19,15 @@ const char* Surround::getModName() {
 }
 
 void Surround::onEnable() {
+	LocalPlayer* lp = Game.getLocalPlayer();
+	if (lp == nullptr) return;
+	if (center) {
+		Vec3 playerPos = lp->eyePos0;
+		Vec3 yR = Vec3(floor(playerPos.x), playerPos.y, floor(playerPos.z));
+		yR.x += 0.5f;
+		yR.z += 0.5f;
+		lp->setPos(yR);
+	}
 }
 
 void Surround::getObsidian() {
