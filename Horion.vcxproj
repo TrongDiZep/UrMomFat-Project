@@ -269,6 +269,7 @@
     <ClCompile Include="Horion\Module\Modules\Spammer.cpp" />
     <ClCompile Include="Horion\Module\Modules\Spider.cpp" />
     <ClCompile Include="Horion\Module\Modules\Step.cpp" />
+    <ClCompile Include="Horion\Module\Modules\Surround.cpp" />
     <ClCompile Include="Horion\Module\Modules\Teleport.cpp" />
     <ClCompile Include="Horion\Module\Modules\Timer.cpp" />
     <ClCompile Include="Horion\Module\Modules\Tower.cpp" />
@@ -423,6 +424,7 @@
     <ClInclude Include="Horion\Module\Modules\Spider.h" />
     <ClInclude Include="Horion\Module\Modules\Step.h" />
     <ClInclude Include="Horion\Module\Modules\StorageESP.h" />
+    <ClInclude Include="Horion\Module\Modules\Surround.h" />
     <ClInclude Include="Horion\Module\Modules\Teleport.h" />
     <ClInclude Include="Horion\Module\Modules\Timer.h" />
     <ClInclude Include="Horion\Module\Modules\Tower.h" />

@@ -85,6 +85,7 @@
 #include "Modules/AutoCrystal.h"
 #include "Modules/Offhand.h"
 #include "Modules/NoRender.h"
+#include "Modules/Surround.h"
 
 #ifdef _DEBUG
 #include "Modules/PacketLogger.h"

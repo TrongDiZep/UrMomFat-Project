@@ -137,11 +137,11 @@ void Arraylist::onImGuiRender(ImDrawList* d) {
 				}
 				ImGuiUtils::drawRectFilled(Vec4(rectPos.x - lineWidth, rectPos.y, rectPos.x, rectPos.w), mainColor);
 			}
-			ImGuiUtils::drawText(textPos, moduleName.c_str(), mainColor, textSize, textShadow);
+			ImGuiUtils::drawText(textPos, moduleName.c_str(), UIColor(mainColor.r, mainColor.g, mainColor.b, (float)(255 * duration)), textSize, textShadow);
 			if (it->backingModule->getModName() != nullptr && showMode) {
 				std::string spacing = moduleName + " ";
 				float ModuleWidth = ImGuiUtils::getTextWidth(spacing.c_str(), textSize);
-				ImGuiUtils::drawText(Vec2(textPos.x + ModuleWidth, textPos.y), modName.c_str(), UIColor::WHITE, textSize, textShadow);
+				ImGuiUtils::drawText(Vec2(textPos.x + ModuleWidth, textPos.y), modName.c_str(), UIColor(255, 255, 255, (float)(255 * duration)), textSize, textShadow);
 			}
 			lastRect = rectPos;
 			i++;

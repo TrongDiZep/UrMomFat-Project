@@ -92,6 +92,7 @@ void ModuleManager::initModules() {
 		moduleList.emplace_back(new AutoCrystal());
 		moduleList.emplace_back(new Offhand());
 		moduleList.emplace_back(new NoRender());
+		moduleList.emplace_back(new Surround());
 
 #ifdef _DEBUG
 		moduleList.emplace_back(new PacketLogger());
