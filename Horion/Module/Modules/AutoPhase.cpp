@@ -20,8 +20,9 @@ void AutoPhase::onTick(GameMode* gm) {
 	if (!Game.getLocalPlayer()->onGround) return;
 
 	Vec3 playerPos = *Game.getLocalPlayer()->getPos();
-	gm->player->aabb.lower.x = playerPos.x - 0.1001f;
-	gm->player->aabb.lower.z = playerPos.z - 0.1001f;
-	gm->player->aabb.upper.x = playerPos.x + 0.1001f;
-	gm->player->aabb.upper.z = playerPos.z + 0.1001f;
+	static const float offset = 0.1001f;
+	gm->player->aabb.lower.x = playerPos.x - offset;
+	gm->player->aabb.lower.z = playerPos.z - offset;
+	gm->player->aabb.upper.x = playerPos.x + offset;
+	gm->player->aabb.upper.z = playerPos.z + offset;
 }
