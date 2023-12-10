@@ -68,8 +68,6 @@ bool GravityAura::tryAutoFallBlock(Vec3 AutoFallBlock) {
 
 void GravityAura::findEntity(Entity* currentEntity, bool isRegularEntity) {
 	static GravityAura* gravityAuraMod = moduleMgr->getModule<GravityAura>();
-	gravityAuraMod->entityList.push_back(currentEntity);
-	if (currentEntity == Game.getLocalPlayer()) return;
 	if (!currentEntity->isAlive()) return;
 	if (!Target::isValidTarget(currentEntity)) return;
 	if (currentEntity->eyePos0.dist(Game.getLocalPlayer()->eyePos0) > gravityAuraMod->placeRange) return;
