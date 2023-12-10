@@ -17,7 +17,7 @@ void ModuleManager::initModules() {
 	Notifications::addNotifBox("Successfully injected Melody", 5.f);
 	logF("Initializing modules.");
 	{
-
+		moduleList.emplace_back(new GravityAura());
 		moduleList.emplace_back(new AutoPhase());
 		moduleList.emplace_back(new InventoryCleaner());
 		// moduleList.emplace_back(new InfiniteAura());

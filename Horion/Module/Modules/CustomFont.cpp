@@ -3,6 +3,7 @@
 CustomFont::CustomFont() : IModule(0, Category::CLIENT, "Lfamo") {
 	fontMode.addEntry("Minecraft", 0);
 	fontMode.addEntry("ProductSans", 1);
+	fontMode.addEntry("BahnSchrift", 2);
 	registerEnumSetting("Font", &fontMode, 0);
 
 	shadowMode.addEntry("None", 0);

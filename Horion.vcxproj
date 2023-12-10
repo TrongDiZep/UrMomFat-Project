@@ -220,6 +220,7 @@
     <ClCompile Include="Horion\Module\Modules\Colors.cpp" />
     <ClCompile Include="Horion\Module\Modules\Criticals.cpp" />
     <ClCompile Include="Horion\Module\Modules\CustomFont.cpp" />
+    <ClCompile Include="Horion\Module\Modules\GravityAura.cpp" />
     <ClCompile Include="Horion\Module\Modules\InventoryView.cpp" />
     <ClCompile Include="Horion\Module\Modules\NoRender.cpp" />
     <ClCompile Include="Horion\Module\Modules\Notifications.cpp" />
@@ -389,6 +390,7 @@
     <ClInclude Include="Horion\Module\Modules\FullBright.h" />
     <ClInclude Include="Horion\Module\Modules\Glide.h" />
     <ClInclude Include="Horion\Module\Modules\Godmode.h" />
+    <ClInclude Include="Horion\Module\Modules\GravityAura.h" />
     <ClInclude Include="Horion\Module\Modules\HighJump.h" />
     <ClInclude Include="Horion\Module\Modules\Hitbox.h" />
     <ClInclude Include="Horion\Module\Modules\HudModule.h" />

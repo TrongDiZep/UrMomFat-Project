@@ -15,6 +15,7 @@
 
 #include "../Fonts/Mojangles.h"
 #include "../Fonts/ProductSansRegular.h"
+#include "../Fonts/BahnSchrift.h"
 
 #include "../Utils/ImGuiUtils.h"
 
@@ -282,12 +283,17 @@ void Hooks::onImGuiRender(ImDrawList* d) {
 	static CustomFont* customFontMod = moduleMgr->getModule<CustomFont>();
 	static ImFont* mcFont = io.Fonts->Fonts[0];
 	static ImFont* pdsFont = io.Fonts->Fonts[1];
-	if ((customFontMod->fontMode.getSelectedValue() == 1) && io.FontDefault != pdsFont) {
+	static ImFont* bhsFont = io.Fonts->Fonts[2];
+	if (customFontMod->fontMode.getSelectedValue() == 0) {
+		io.FontDefault = mcFont;
+		ImGuiUtils::fontSize = 22.f;
+	}
+	else if (customFontMod->fontMode.getSelectedValue() == 1) {
 		io.FontDefault = pdsFont;
 		ImGuiUtils::fontSize = 25.f;
 	}
-	else if ((customFontMod->fontMode.getSelectedValue() != 1) && io.FontDefault != mcFont) {
-		io.FontDefault = mcFont;
+	else if (customFontMod->fontMode.getSelectedValue() == 2) {
+		io.FontDefault = bhsFont;
 		ImGuiUtils::fontSize = 22.f;
 	}
 	ImGuiUtils::setDrawList(d);
@@ -359,6 +365,7 @@ HRESULT Hooks::presentCallback(IDXGISwapChain3* pSwapChain, UINT syncInterval, U
 			//io.Fonts->AddFontFromMemoryTTF((void*)Arial, sizeof(Arial), 50.f);
 			io.Fonts->AddFontFromMemoryTTF((void*)Mojangles, sizeof(Mojangles), 50.f); // 200.f
 			io.Fonts->AddFontFromMemoryTTF((void*)ProductSansRegular, sizeof(ProductSansRegular), 50.f);
+			io.Fonts->AddFontFromMemoryTTF((void*)BahnSchrift, sizeof(BahnSchrift), 50.f);
 			io.IniFilename = NULL;
 
 			ImGui_ImplWin32_Init(window);
